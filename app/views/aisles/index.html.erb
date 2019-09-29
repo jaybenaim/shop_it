@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Aisles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Store</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @aisles.each do |aisle| %>
+      <tr>
+        <td><%= aisle.number %></td>
+        <td><%= aisle.store.name %></td>
+        <td><%= aisle.store.address %></td>
+        <td><%= link_to 'Show', aisle %></td>
+        <td><%= link_to 'Edit', edit_aisle_path(aisle) %></td>
+        <td><%= link_to 'Destroy', aisle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Aisle', new_aisle_path %>

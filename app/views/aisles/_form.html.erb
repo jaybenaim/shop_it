@@ -1,0 +1,27 @@
+<%= form_with(model: aisle, local: true) do |form| %>
+  <% if aisle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(aisle.errors.count, "error") %> prohibited this aisle from being saved:</h2>
+
+      <ul>
+        <% aisle.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store %>
+    <%= form.text_field :store_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
