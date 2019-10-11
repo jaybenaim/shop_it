@@ -2,6 +2,7 @@ import React from "react";
 
 class Signup extends React.Component {
   state = {
+    name: "",
     email: "",
     password: ""
   };
@@ -20,6 +21,13 @@ class Signup extends React.Component {
     return (
       <form onSubmit={e => this.props.handleSignup(e, this.state)}>
         <h4>Sign Up</h4>
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          value={this.state.name}
+          onChange={this.handleChange}
+        />
         <label htmlFor="email">Email</label>
         <input
           type="text"

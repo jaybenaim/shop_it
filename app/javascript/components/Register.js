@@ -6,35 +6,36 @@ import Api from "../api/Api";
 
 class Register extends Component {
   state = {
-    loggedIn: localStorage.token ? true : false,
-    username: localStorage.username || null,
+    loggedIn: localStorage.email ? true : false,
+    username: localStorage.name || null,
     displayedForm: null
   };
 
   handleSignup = (e, data) => {
-    // api users
+    e.preventDefault();
     Api.get("users/sign_up", {
-      username: data.username,
+      email: data.email,
       password: data.password
     }).then(res => {
-      localStorage.token = res.data.token;
-      localStorage.userId = res.data.id;
-      localStorage.username = res.data.username;
+      localStorage.name = data.name;
+      localStorage.email = data.email;
       console.log(res.statusText);
     });
   };
 
   handleLogin = (e, data) => {
+    e.preventDefault();
+    console.log(data);
     Api.post("users/sign_in", data, {
       headers: {
         "Content-Type": "application/json"
       }
     })
       .then(res => {
-        localStorage.token = res.data.token;
-        localStorage.userId = res.data.id;
-        localStorage.username = res.data.username;
+        localStorage.name = data.name;
+        localStorage.email = data.email;
         console.log(res.statusText);
+        console.log(localStorage);
       })
       .catch(err => {
         console.log(err);
@@ -43,9 +44,8 @@ class Register extends Component {
 
   handleLogout = e => {
     e.preventDefault();
-    localStorage.token = "";
-    localStorage.userId = "";
-    localStorage.username = "";
+    localStorage.name = "";
+    localStorage.email = "";
 
     this.setState({ loggedIn: false });
   };
@@ -85,7 +85,6 @@ class Register extends Component {
   );
 
   render() {
-    console.log(localStorage);
     let form;
     switch (this.state.displayedForm) {
       case "login":
@@ -103,8 +102,8 @@ class Register extends Component {
         {form}
         <div className="login-welcome">
           {this.state.loggedIn
-            ? `Hello, ${localStorage.username.slice(0, 1).toUpperCase() +
-                localStorage.username.slice(1)}`
+            ? `Hello, ${localStorage.name.slice(0, 1).toUpperCase() +
+                localStorage.name.slice(1)}`
             : "Please Log In"}
         </div>
       </div>
