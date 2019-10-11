@@ -1,4 +1,5 @@
 class ShoppingListsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_shopping_list, only: [:show, :edit, :update, :destroy]
 
   # GET /shopping_lists
@@ -35,6 +36,8 @@ class ShoppingListsController < ApplicationController
         format.json { render json: @shopping_list.errors, status: :unprocessable_entity }
       end
     end
+    # render json: { params: params }
+
   end
 
   # PATCH/PUT /shopping_lists/1
@@ -69,6 +72,6 @@ class ShoppingListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shopping_list_params
-      params.require(:shopping_list).permit(:user_id, :products_id)
+      params.require(:shopping_list).permit(:products_id, :user, :listName, :budget)
     end
 end

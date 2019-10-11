@@ -14,8 +14,10 @@ class ShoppingListsTest < ApplicationSystemTestCase
     visit shopping_lists_url
     click_on "New Shopping List"
 
+    fill_in "Budget", with: @shopping_list.budget
+    fill_in "Listname", with: @shopping_list.listName
     fill_in "Products", with: @shopping_list.products_id
-    fill_in "User", with: @shopping_list.user_id
+    fill_in "User", with: @shopping_list.user
     click_on "Create Shopping list"
 
     assert_text "Shopping list was successfully created"
@@ -26,8 +28,10 @@ class ShoppingListsTest < ApplicationSystemTestCase
     visit shopping_lists_url
     click_on "Edit", match: :first
 
+    fill_in "Budget", with: @shopping_list.budget
+    fill_in "Listname", with: @shopping_list.listName
     fill_in "Products", with: @shopping_list.products_id
-    fill_in "User", with: @shopping_list.user_id
+    fill_in "User", with: @shopping_list.user
     click_on "Update Shopping list"
 
     assert_text "Shopping list was successfully updated"

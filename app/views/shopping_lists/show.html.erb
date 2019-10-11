@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @shopping_list.user_id %>
+  <strong>Products:</strong>
+  <%= @shopping_list.products_id %>
 </p>
 
 <p>
-  <strong>Products:</strong>
-  <%= @shopping_list.products_id %>
+  <strong>User:</strong>
+  <%= @shopping_list.user %>
+</p>
+
+<p>
+  <strong>Listname:</strong>
+  <%= @shopping_list.listName %>
+</p>
+
+<p>
+  <strong>Budget:</strong>
+  <%= @shopping_list.budget %>
 </p>
 
 <%= link_to 'Edit', edit_shopping_list_path(@shopping_list) %> |
