@@ -1,19 +1,20 @@
-import React from "react";
-import Register from "./Register";
-
+import React from "react"
+import Register from './Register' 
 class Navbar extends React.Component {
-  state = {};
-  render() {
+  render () {
     return (
-      <nav className="navbar navbar-default">
-        <ul>
-          <li>
-            <Register />
-          </li>
-        </ul>
-      </nav>
+  
+        <nav className="navbar navbar-default">
+          <ul>
+            <li>
+
+              <Register />
+            </li>
+          </ul>
+        </nav>
+
     );
   }
 }
 
-export default Navbar;
+export default Navbar

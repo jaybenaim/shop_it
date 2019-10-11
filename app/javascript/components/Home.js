@@ -1,16 +1,13 @@
 import React from "react";
-import Navbar from "./NavBar";
+import Navbar from "./Navbar";
 
 class Home extends React.Component {
-  state = {};
   render() {
     return (
-      <>
-        <div className="container">
-          <Navbar />
-          <h1>Welcome To Shop It</h1>
-        </div>
-      </>
+      <div className="container">
+        <Navbar />
+        <h1>Welcome To Shop It</h1>
+      </div>
     );
   }
 }
