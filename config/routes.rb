@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :shopping_lists
   get 'home/index'
-  resources :users
   resources :products
   resources :categories
   resources :aisles
