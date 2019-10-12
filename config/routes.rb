@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   resources :shopping_lists, defaults: {format:'json'}
+  resources :lists_products, defaults: {format:'json'}
+  resources :lists, defaults: {format:'json'}
   devise_for :users
   get 'home/index'
   resources :products, defaults: {format:'json'}

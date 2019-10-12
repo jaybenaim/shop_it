@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  respond_to :json
   # GET /products
   # GET /products.json
   def index
@@ -25,7 +26,9 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+
     @product = Product.new(product_params)
+    @shopping_list = ShoppingList.new(products_ids=product_params[:id])
 
     respond_to do |format|
       if @product.save
@@ -36,6 +39,8 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+
+    
   end
 
   # PATCH/PUT /products/1

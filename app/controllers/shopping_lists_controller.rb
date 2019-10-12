@@ -36,8 +36,6 @@ class ShoppingListsController < ApplicationController
         format.json { render json: @shopping_list.errors, status: :unprocessable_entity }
       end
     end
-    # render json: { params: params }
-
   end
 
   # PATCH/PUT /shopping_lists/1
@@ -72,6 +70,6 @@ class ShoppingListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shopping_list_params
-      params.require(:shopping_list).permit(:products_id, :user, :listName, :budget)
+      params.require(:shopping_list).permit(:products_id, :lists_id)
     end
 end

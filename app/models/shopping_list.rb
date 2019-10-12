@@ -1,4 +1,4 @@
 class ShoppingList < ApplicationRecord
-  belongs_to :products, optional: true 
-
+  has_many :products
+  has_many :lists
 end

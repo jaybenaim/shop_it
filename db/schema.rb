@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_11_192945) do
+ActiveRecord::Schema.define(version: 2019_10_12_043925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 2019_10_11_192945) do
     t.index ["aisle_id"], name: "index_categories_on_aisle_id", unique: true
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.string "user"
+    t.string "name"
+    t.float "budget"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lists_products", id: false, force: :cascade do |t|
+    t.bigint "list_id", null: false
+    t.bigint "product_id", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
@@ -39,16 +52,17 @@ ActiveRecord::Schema.define(version: 2019_10_11_192945) do
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "shopping_lists_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["shopping_lists_id"], name: "index_products_on_shopping_lists_id"
   end
 
   create_table "shopping_lists", force: :cascade do |t|
-    t.bigint "products_id", null: false
-    t.string "user"
-    t.string "listName"
-    t.integer "budget"
+    t.bigint "products_id"
+    t.bigint "lists_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["lists_id"], name: "index_shopping_lists_on_lists_id"
     t.index ["products_id"], name: "index_shopping_lists_on_products_id"
   end
 
@@ -75,5 +89,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_192945) do
   add_foreign_key "aisles", "stores"
   add_foreign_key "categories", "aisles"
   add_foreign_key "products", "categories"
+  add_foreign_key "shopping_lists", "lists", column: "lists_id"
   add_foreign_key "shopping_lists", "products", column: "products_id"
 end

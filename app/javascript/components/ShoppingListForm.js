@@ -14,9 +14,14 @@ class ShoppingListForm extends Component {
     let name = this.nameRef.current.value;
     let budget = this.budgetRef.current.value;
     let user = localStorage.name;
-    Api.post("shopping_lists/", { user, listname: name, budget }).then(res => {
+    Api.post("lists/", {
+      user,
+      listname: name,
+      budget
+    }).then(res => {
       console.log(res.statusText);
     });
+    /// get product id and list id
   };
   componentDidMount() {
     passCsrfToken(document, axios);

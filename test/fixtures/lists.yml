@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  products: one
-  lists: one
+  user: MyString
+  name: MyString
+  budget: 1.5
 
 two:
-  products: two
-  lists: two
+  user: MyString
+  name: MyString
+  budget: 1.5
